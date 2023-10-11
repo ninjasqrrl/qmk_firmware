@@ -102,11 +102,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
 [_QWERTY] = LAYOUT(
-	KC_ESC,	 				KC_1,	KC_2,		KC_3,		KC_4,			KC_5,												KC_6,		KC_7,			KC_8,		KC_9,	KC_0,		KC_BSPC,
-	LT(_NUMPAD, KC_TAB),	KC_Q,	KC_W,		KC_E,		KC_R,			KC_T,												KC_Y,		KC_U,			KC_I,		KC_O,	KC_P,		KC_BSLS,
-	XXXXXXX,				KC_A,	KC_S,		KC_D,		KC_F,			KC_G,												KC_H,		KC_J,			KC_K,		KC_L,	KC_SCLN,	KC_QUOT,
-	KC_GRV,	 				KC_Z,	KC_X,		KC_C,		KC_V,			KC_B, 		XXXXXXX,			XXXXXXX, 			KC_N,		KC_M,			KC_COMM,	KC_DOT,	KC_SLSH,	KC_DEL,
-									KC_LGUI,	KC_LALT,	TO(_GAME),		MO(_NAV),	CTL_T(KC_ENT),		SFT_T(KC_SPC),		MO(_NAV),	TO(_NAV),		KC_LBRC,	KC_RBRC
+	KC_ESC,	 		KC_1,	KC_2,		KC_3,		KC_4,			KC_5,												KC_6,		KC_7,			KC_8,		KC_9,	KC_0,		KC_BSLS,
+	MO(_NUMPAD),	KC_Q,	KC_W,		KC_E,		KC_R,			KC_T,												KC_Y,		KC_U,			KC_I,		KC_O,	KC_P,		KC_MINS,
+	MO(_NAV),		KC_A,	KC_S,		KC_D,		KC_F,			KC_G,												KC_H,		KC_J,			KC_K,		KC_L,	KC_SCLN,	KC_QUOT,
+	KC_GRV,	 		KC_Z,	KC_X,		KC_C,		KC_V,			KC_B, 		XXXXXXX,			XXXXXXX, 			KC_N,		KC_M,			KC_COMM,	KC_DOT,	KC_SLSH,	KC_EQL,
+							KC_LGUI,	TO(_GAME),  ALT_T(XXXXXXX),		CTL_T(KC_TAB),	LT(_NAV, KC_ENT),		SFT_T(KC_SPC),		CTL_T(KC_BSPC),	ALT_T(KC_DEL),		TO(_GAME),	KC_LBRC
 ),
 [_LOWER] = LAYOUT(
 	_______,	KC_F1,	KC_F2,		KC_F3,		KC_F4,		KC_F5,								KC_F6,		KC_F7,		KC_F8,		KC_F9,		KC_F10,	KC_F11,
@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	XXXXXXX,	RGB_TOG,	RGB_HUI,	RGB_SAI,	RGB_VAI,		XXXXXXX,							XXXXXXX,		KC_VOLD,		KC_MUTE,	KC_VOLU,	XXXXXXX,	XXXXXXX,
 	XXXXXXX,	RGB_MOD,	RGB_HUD,	RGB_SAD,	RGB_VAD,		XXXXXXX,							XXXXXXX,		KC_MPRV,		KC_MPLY,	KC_MNXT,	XXXXXXX,	XXXXXXX,
 	XXXXXXX,	XXXXXXX,	XXXXXXX,	XXXXXXX,	XXXXXXX,		KC_QWERTY,	XXXXXXX,	XXXXXXX,	XXXXXXX,		XXXXXXX,		XXXXXXX,	XXXXXXX,	XXXXXXX,	XXXXXXX,
-							_______,	_______,	TO(_QWERTY),	_______,	_______,	_______,	_______,		TO(_QWERTY),	_______,	_______
+							_______,	TO(_QWERTY),	_______,	_______,	_______,	_______,	_______,		_______,	TO(_QWERTY),	_______
 ),
 [_NUMPAD] = LAYOUT(
 	_______,	XXXXXXX,	XXXXXXX,	XXXXXXX,		XXXXXXX,	XXXXXXX,							XXXXXXX,	XXXXXXX,	XXXXXXX,	XXXXXXX,	XXXXXXX,	XXXXXXX,
@@ -138,98 +138,94 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_NAV] = LAYOUT(
 	_______,	KC_F1,		KC_F2,		KC_F3,		KC_F4,			KC_F5,								KC_F6,		KC_F7,		KC_F8,		KC_F9,		KC_F10,		_______,
-	_______,	KC_F11,		KC_F12,		KC_APP,		XXXXXXX,		KC_PSCR,							KC_PGUP,	C(KC_LEFT),	KC_UP,		C(KC_RGHT),	XXXXXXX,	KC_EQL,
-	_______,	KC_AGIN,	C(KC_S),	C(KC_D),	XXXXXXX,		KC_CAPS,							KC_PGDN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	XXXXXXX,	KC_MINS,
+	_______,	KC_F11,		KC_F12,		KC_APP,		XXXXXXX,		KC_PSCR,							KC_PGUP,	C(KC_LEFT),	KC_UP,		C(KC_RGHT),	XXXXXXX,	_______,
+	_______,	KC_AGIN,	C(KC_S),	C(KC_D),	XXXXXXX,		KC_CAPS,							KC_PGDN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	XXXXXXX,	_______,
 	_______,	KC_UNDO,	KC_CUT,		KC_COPY,	KC_PASTE,		XXXXXXX,	_______,	_______,	XXXXXXX,	KC_HOME,	XXXXXXX,	KC_END,		XXXXXXX,	_______,
-							_______,	_______,	TO(_QWERTY),	_______,	_______,	_______,	_______,	TO(_GAME),	_______,	_______
+							_______,	TO(_QWERTY),	_______,	_______,	_______,	_______,	_______,	_______,	TO(_GAME),	KC_RBRC
 ),
 [_GAME] = LAYOUT(
 	KC_ESC,	 	KC_1,	KC_2,		KC_3,		KC_4,	        KC_5,								KC_6,		KC_7,			KC_8,		KC_9,	KC_0,		KC_BSPC,
 	KC_TAB,	 	KC_Q,	KC_W,		KC_E,		KC_R,	        KC_T,								KC_Y,		KC_U,			KC_I,		KC_O,	KC_P,		KC_BSLS,
 	KC_LSFT,	KC_A,	KC_S,		KC_D,		KC_F,	        KC_G,								KC_H,		KC_J,			KC_K,		KC_L,	KC_SCLN,	KC_QUOT,
 	KC_GRV,	 	KC_Z,	KC_X,		KC_C,		KC_V,	        KC_B,		XXXXXXX,	XXXXXXX, 	KC_N,		KC_M,			KC_COMM,	KC_DOT,	KC_SLSH,	KC_DEL,
-						KC_LGUI,	KC_LALT,	TO(_QWERTY),	KC_LCTL,	KC_SPC,		KC_ENT,		KC_LSFT,	TO(_ADJUST),		KC_LBRC,	KC_RBRC
+						KC_LGUI,	TO(_QWERTY),	KC_LALT,	KC_LCTL,	KC_SPC,		KC_ENT,		KC_LSFT,	KC_LBRC,		TO(_ADJUST),	KC_RBRC
 )
 };
 
 #ifdef RGBLIGHT_ENABLE
-char layer_state_str[70];
-// Now define the array of layers. Later layers take precedence
+// char layer_state_str[70];
+// // Now define the array of layers. Later layers take precedence
 
-// QWERTY,
-// Light on inner column and underglow
-const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_LAYER_ID(HSV_RED)
+// // QWERTY,
+// // Light on inner column and underglow
+// const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+// 	SET_LAYER_ID(HSV_RED)
+// );
+// const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+// 	SET_LAYER_ID(HSV_PINK)
+// );
 
-);
-const rgblight_segment_t PROGMEM layer_colemakdh_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_LAYER_ID(HSV_PINK)
-);
+// // _NUM,
+// // Light on outer column and underglow
+// const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+// 	SET_LAYER_ID(HSV_TEAL)
+// );
+// // _SYMBOL,
+// // Light on inner column and underglow
+// const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+// 	SET_LAYER_ID(HSV_BLUE)
+// );
+// // _COMMAND,
+// // Light on inner column and underglow
+// const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+//   SET_LAYER_ID(HSV_PURPLE)
+// );
 
-// _NUM,
-// Light on outer column and underglow
-const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_LAYER_ID(HSV_TEAL)
+// //_NUMPAD
+// const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+// 	SET_INDICATORS(HSV_ORANGE),
+// 	SET_UNDERGLOW(HSV_ORANGE),
+// 	SET_NUMPAD(HSV_BLUE),
+// 	{7, 4, HSV_ORANGE},
+// 	{25, 2, HSV_ORANGE},
+// 	{35+6, 4, HSV_ORANGE},
+// 	{35+25, 2, HSV_ORANGE}
+// 	);
+// // _SWITCHER   // light up top row
+// const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+// 	SET_LAYER_ID(HSV_GREEN),
+// 	SET_NUMROW(HSV_GREEN)
+// );
 
-);
-// _SYMBOL,
-// Light on inner column and underglow
-const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_LAYER_ID(HSV_BLUE)
+// const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+// 	layer_qwerty_lights,
+// 	layer_num_lights,// overrides layer 1
+// 	layer_symbol_lights,
+// 	layer_command_lights,
+// 	layer_numpad_lights,
+// 	layer_switcher_lights,  // Overrides other layers
+// 	layer_colemakdh_lights
+// );
 
-	);
-// _COMMAND,
-// Light on inner column and underglow
-const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_LAYER_ID(HSV_PURPLE)
-);
-
-//_NUMPAD
-const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_INDICATORS(HSV_ORANGE),
-	SET_UNDERGLOW(HSV_ORANGE),
-	SET_NUMPAD(HSV_BLUE),
-	{7, 4, HSV_ORANGE},
-	{25, 2, HSV_ORANGE},
-	{35+6, 4, HSV_ORANGE},
-	{35+25, 2, HSV_ORANGE}
-	);
-// _SWITCHER   // light up top row
-const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_LAYER_ID(HSV_GREEN),
-	SET_NUMROW(HSV_GREEN)
-);
-
-const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-
-	layer_qwerty_lights,
-	layer_num_lights,// overrides layer 1
-	layer_symbol_lights,
-	layer_command_lights,
-	layer_numpad_lights,
-	layer_switcher_lights,  // Overrides other layers
-	layer_colemakdh_lights
-);
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
-	rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAKDH));
+// layer_state_t layer_state_set_user(layer_state_t state) {
+// 	// rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
+// 	// rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAKDH));
 
 
-	rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
-	rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
-	rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
-	rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
-	rgblight_set_layer_state(5, layer_state_cmp(state, _SWITCH));
-	return state;
-}
-void keyboard_post_init_user(void) {
-	// Enable the LED layers
-	rgblight_layers = my_rgb_layers;
+// 	// rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
+// 	// rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
+// 	// rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
+// 	// rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
+// 	// rgblight_set_layer_state(5, layer_state_cmp(state, _SWITCH));
+// 	return state;
+// }
+// void keyboard_post_init_user(void) {
+// 	// Enable the LED layers
+// 	rgblight_layers = my_rgb_layers;
 
-	rgblight_mode(10);// haven't found a way to set this in a more useful way
+// 	rgblight_mode(10);// haven't found a way to set this in a more useful way
 
-}
+// }
 #endif
 
 #ifdef OLED_ENABLE
@@ -247,7 +243,7 @@ static void render_logo(void) {
 static void print_status_narrow(void) {
 	// Print current mode
 	oled_write_P(PSTR("\n\n"), false);
-	oled_write_ln_P(PSTR("Dane\nEvans"), false);
+	oled_write_ln_P(PSTR("Nico\nSalas"), false);
 
 	oled_write_ln_P(PSTR(""), false);
 
