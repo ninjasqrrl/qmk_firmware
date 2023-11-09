@@ -31,36 +31,36 @@
 #define SET_UNDERGLOW(hsv) \
 	{1, 6, hsv}, \
 	{35+1, 6,hsv}
-#define SET_NUMPAD(hsv)	 \
-	{35+15, 5, hsv},\
-	  {35+22, 3, hsv},\
-	  {35+27, 3, hsv}
+#define SET_NUMPAD(hsv) \
+	{35+15, 5, hsv}, \
+	{35+22, 3, hsv}, \
+	{35+27, 3, hsv}
 #define SET_NUMROW(hsv) \
 	{10, 2, hsv}, \
-		{20, 2, hsv}, \
-		{30, 2, hsv}, \
-	  {35+ 10, 2, hsv}, \
-	  {35+ 20, 2, hsv}, \
-	  {35+ 30, 2, hsv}
-#define SET_INNER_COL(hsv)	\
+	{20, 2, hsv}, \
+	{30, 2, hsv}, \
+	{35+ 10, 2, hsv}, \
+	{35+ 20, 2, hsv}, \
+	{35+ 30, 2, hsv}
+#define SET_INNER_COL(hsv) \
 	{33, 4, hsv}, \
-	  {35+ 33, 4, hsv}
+	{35+ 33, 4, hsv}
 
 #define SET_OUTER_COL(hsv) \
 	{7, 4, hsv}, \
-	  {35+ 7, 4, hsv}
-#define SET_THUMB_CLUSTER(hsv) 	\
+	{35+ 7, 4, hsv}
+#define SET_THUMB_CLUSTER(hsv) \
 	{25, 2, hsv}, \
-	  {35+ 25, 2, hsv}
-#define SET_LAYER_ID(hsv) 	\
+	{35+ 25, 2, hsv}
+#define SET_LAYER_ID(hsv) \
 	{0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
 	{35+0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
-		{1, 6, hsv}, \
+	{1, 6, hsv}, \
 	{35+1, 6, hsv}, \
-		{7, 4, hsv}, \
-	  {35+ 7, 4, hsv}, \
-		{25, 2, hsv}, \
-	  {35+ 25, 2, hsv}
+	{7, 4, hsv}, \
+	{35+ 7, 4, hsv}, \
+	{25, 2, hsv}, \
+	{35+ 25, 2, hsv}
 
 
 enum sofle_layers {
@@ -83,7 +83,7 @@ enum custom_keycodes {
 	KC_RAISE,
 	KC_ADJUST,
 	KC_D_MUTE,
-    KC_SHRUG
+	KC_SHRUG
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -103,11 +103,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
 [_QWERTY] = LAYOUT(
-	KC_ESC,	 		KC_1,	KC_2,		KC_3,		KC_4,			KC_5,												KC_6,		KC_7,			KC_8,		KC_9,	KC_0,		KC_BSLS,
-	MO(KC_CAPS),	KC_Q,	KC_W,		KC_E,		KC_R,			KC_T,												KC_Y,		KC_U,			KC_I,		KC_O,	KC_P,		KC_MINS,
-	SH_T(KC_SHRUG),	    LT(_NAV, KC_A),	KC_S,		KC_D,		KC_F,			KC_G,												KC_H,		KC_J,			KC_K,		KC_L,	LT(_NAV, KC_SCLN),	SH_T(KC_QUOT),
-	KC_GRV,	 		KC_Z,	KC_X,		KC_C,		KC_V,			KC_B, 		XXXXXXX,			XXXXXXX, 			KC_N,		KC_M,			KC_COMM,	KC_DOT,	KC_SLSH,	KC_EQL,
-							KC_LGUI,	TO(_GAME),  ALT_T(XXXXXXX),	CTL_T(KC_TAB),	SFT_T(KC_ENT),	SFT_T(KC_SPC),		CTL_T(KC_BSPC),	ALT_T(KC_DEL),		TO(_GAME),	KC_LBRC
+	KC_ESC,	 		KC_1,			KC_2,		KC_3,		KC_4,			KC_5,											KC_6,			KC_7,			KC_8,		KC_9,	KC_0,				KC_EQL,
+	KC_LBRC,		KC_Q,			KC_W,		KC_E,		KC_R,			KC_T,											KC_Y,			KC_U,			KC_I,		KC_O,	KC_P,				KC_MINS,
+	SH_T(KC_RBRC),	LT(_NAV, KC_A),	KC_S,		KC_D,		KC_F,			KC_G,											KC_H,			KC_J,			KC_K,		KC_L,	LT(_NAV, KC_SCLN),	SH_T(KC_QUOT),
+	KC_GRV,	 		KC_Z,			KC_X,		KC_C,		KC_V,			KC_B, 			XXXXXXX,		XXXXXXX, 		KC_N,			KC_M,			KC_COMM,	KC_DOT,	KC_SLSH,			KC_BSLS,
+									XXXXXXX,	TO(_GAME),	ALT_T(KC_LGUI),	CTL_T(KC_TAB),	SFT_T(KC_ENT),	SFT_T(KC_SPC),	CTL_T(KC_BSPC),	ALT_T(KC_DEL),	TO(_GAME),	XXXXXXX
 ),
 [_LOWER] = LAYOUT(
 	_______,	KC_F1,	KC_F2,		KC_F3,		KC_F4,		KC_F5,								KC_F6,		KC_F7,		KC_F8,		KC_F9,		KC_F10,	KC_F11,
@@ -145,10 +145,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 							_______,	TO(_QWERTY),	_______,	_______,	_______,	_______,	_______,	_______,	TO(_GAME),	KC_RBRC
 ),
 [_GAME] = LAYOUT(
-	KC_ESC,	 	KC_1,	KC_2,		KC_3,		KC_4,	        KC_5,								KC_6,		KC_7,			KC_8,		KC_9,	KC_0,		KC_BSPC,
-	KC_TAB,	 	KC_Q,	KC_W,		KC_E,		KC_R,	        KC_T,								KC_Y,		KC_U,			KC_I,		KC_O,	KC_P,		KC_BSLS,
-	KC_LSFT,	KC_A,	KC_S,		KC_D,		KC_F,	        KC_G,								KC_H,		KC_J,			KC_K,		KC_L,	LT(_NAV, KC_SCLN),	KC_QUOT,
-	KC_GRV,	 	KC_Z,	KC_X,		KC_C,		KC_V,	        KC_B,		XXXXXXX,	XXXXXXX, 	KC_N,		KC_M,			KC_COMM,	KC_DOT,	KC_SLSH,	KC_DEL,
+	KC_ESC,	 	KC_1,	KC_2,		KC_3,		KC_4,			KC_5,								KC_6,		KC_7,			KC_8,		KC_9,	KC_0,		KC_BSPC,
+	KC_TAB,	 	KC_Q,	KC_W,		KC_E,		KC_R,			KC_T,								KC_Y,		KC_U,			KC_I,		KC_O,	KC_P,		KC_BSLS,
+	KC_LSFT,	KC_A,	KC_S,		KC_D,		KC_F,			KC_G,								KC_H,		KC_J,			KC_K,		KC_L,	LT(_NAV, KC_SCLN),	KC_QUOT,
+	KC_GRV,	 	KC_Z,	KC_X,		KC_C,		KC_V,			KC_B,		XXXXXXX,	XXXXXXX, 	KC_N,		KC_M,			KC_COMM,	KC_DOT,	KC_SLSH,	KC_DEL,
 						KC_LGUI,	TO(_QWERTY),	KC_LALT,	KC_LCTL,	KC_SPC,		KC_ENT,		KC_LSFT,	KC_LBRC,		TO(_ADJUST),	KC_RBRC
 )
 };
@@ -350,13 +350,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				unregister_mods(mod_config(MOD_MEH));
 				unregister_code(KC_UP);
 			}
-            return false;
-        case KC_SHRUG:
+			return false;
+		case KC_SHRUG:
 			if (record->event.pressed) {
 				SEND_STRING("Hello world!");
-                // SEND_STRING("¯\\_(ツ)_/¯");
+				// SEND_STRING("¯" SS_TAP(X_BSLS) "_(ツ)_/¯");
 			}
-            return false;
+			return false;
 	}
 	return true;
 }
