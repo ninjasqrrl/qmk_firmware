@@ -62,6 +62,7 @@
 	{25, 2, hsv}, \
 	{35+ 25, 2, hsv}
 
+bool mouse_jiggle_mode = false;
 
 enum sofle_layers {
 	_DEFAULTS = 0,
@@ -83,7 +84,8 @@ enum custom_keycodes {
 	KC_RAISE,
 	KC_ADJUST,
 	KC_D_MUTE,
-	KC_SHRUG
+	KC_SHRUG,
+	MOUSEJIGGLERMACRO
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -103,11 +105,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
 [_QWERTY] = LAYOUT(
-	KC_ESC,	 		KC_1,			KC_2,		KC_3,		KC_4,			KC_5,											KC_6,			KC_7,			KC_8,		KC_9,	KC_0,				KC_BSLS,
-	KC_RBRC,		KC_Q,			KC_W,		KC_E,		KC_R,			KC_T,											KC_Y,			KC_U,			KC_I,		KC_O,	KC_P,				KC_MINS,
-	SH_T(KC_LBRC),	LT(_NAV, KC_A),	KC_S,		KC_D,		KC_F,			KC_G,											KC_H,			KC_J,			KC_K,		KC_L,	LT(_NAV, KC_SCLN),	SH_T(KC_QUOT),
-	KC_GRV,	 		KC_Z,			KC_X,		KC_C,		KC_V,			KC_B, 			XXXXXXX,		XXXXXXX, 		KC_N,			KC_M,			KC_COMM,	KC_DOT,	KC_SLSH,			KC_EQL,
-									XXXXXXX,	TO(_GAME),	ALT_T(KC_LGUI),	CTL_T(KC_TAB),	SFT_T(KC_ENT),	SFT_T(KC_SPC),	CTL_T(KC_BSPC),	ALT_T(KC_DEL),	TO(_GAME),	XXXXXXX
+	KC_ESC,	 		KC_1,	KC_2,		KC_3,		KC_4,		KC_5,											KC_6,		KC_7,	KC_8,		KC_9,	KC_0,		KC_BSLS,
+	KC_RBRC,		KC_Q,	KC_W,		KC_E,		KC_R,		KC_T,											KC_Y,		KC_U,	KC_I,		KC_O,	KC_P,		KC_MINS,
+	LT(_NAV, KC_LBRC),	KC_A,	KC_S,		KC_D,		KC_F,		KC_G,											KC_H,		KC_J,	KC_K,		KC_L,	KC_SCLN,	LT(_NAV, KC_QUOT),
+	ALT_T(KC_GRV),	KC_Z,	KC_X,		KC_C,		KC_V,		KC_B, 	XXXXXXX,			XXXXXXX, 			KC_N,		KC_M,	KC_COMM,	KC_DOT,	KC_SLSH,	KC_EQL,
+							KC_LALT,	TO(_GAME),	KC_LGUI,	CTL_T(KC_TAB),	SFT_T(KC_ENT),	SFT_T(KC_SPC),	KC_BSPC,	KC_DEL,	TO(_GAME),	KC_RALT
 ),
 [_LOWER] = LAYOUT(
 	_______,	KC_F1,	KC_F2,		KC_F3,		KC_F4,		KC_F5,								KC_F6,		KC_F7,		KC_F8,		KC_F9,		KC_F10,	KC_F11,
@@ -141,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	_______,	KC_F1,		KC_F2,		KC_F3,		KC_F4,			KC_F5,								KC_F6,		KC_F7,		KC_F8,		KC_F9,		KC_F10,		_______,
 	_______,	KC_F11,		KC_F12,		KC_APP,		XXXXXXX,		KC_PSCR,							KC_PGUP,	C(KC_LEFT),	KC_UP,		C(KC_RGHT),	XXXXXXX,	_______,
 	_______,	KC_AGIN,	C(KC_S),	C(KC_D),	XXXXXXX,		KC_CAPS,							KC_PGDN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	XXXXXXX,	_______,
-	_______,	KC_UNDO,	KC_CUT,		KC_COPY,	KC_PASTE,		XXXXXXX,	_______,	_______,	XXXXXXX,	KC_HOME,	XXXXXXX,	KC_END,		XXXXXXX,	_______,
+	_______,	KC_UNDO,	KC_CUT,		KC_COPY,	KC_PASTE,		MOUSEJIGGLERMACRO,	_______,	_______,	XXXXXXX,	KC_HOME,	XXXXXXX,	KC_END,		XXXXXXX,	_______,
 							_______,	TO(_QWERTY),	_______,	_______,	_______,	_______,	_______,	_______,	TO(_GAME),	KC_RBRC
 ),
 [_GAME] = LAYOUT(
@@ -310,6 +312,18 @@ bool oled_task_user(void) {
 
 #endif
 
+void matrix_scan_user(void) {
+	if (mouse_jiggle_mode) {
+		SEND_STRING(SS_DELAY(10));
+		tap_code(KC_MS_UP);
+		tap_code(KC_MS_DOWN);
+		SEND_STRING(SS_DELAY(30));
+		tap_code(KC_MS_LEFT);
+		tap_code(KC_MS_RIGHT);
+	} else {
+	}
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case KC_QWERTY:
@@ -357,6 +371,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				// SEND_STRING("¯" SS_TAP(X_BSLS) "_(ツ)_/¯");
 			}
 			return false;
+		case MOUSEJIGGLERMACRO:
+			if (record->event.pressed) {
+				if (mouse_jiggle_mode) {
+					SEND_STRING(SS_DELAY(15));
+					mouse_jiggle_mode = false;
+				} else {
+					SEND_STRING(SS_DELAY(15));
+					mouse_jiggle_mode = true;
+				}
+			} else {
+			}
+			break;
 	}
 	return true;
 }
